@@ -467,7 +467,7 @@ export default function JobsPage() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Job List */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -485,9 +485,8 @@ export default function JobsPage() {
                   className="cursor-pointer"
                 >
                   <Card
-                    className={`bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300 ${
-                      selectedJob?.id === job.id ? "ring-2 ring-blue-500" : ""
-                    }`}
+                    className={`bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/15 transition-all duration-300 ${selectedJob?.id === job.id ? "ring-2 ring-blue-500" : ""
+                      }`}
                   >
                     <CardContent className="p-6">
                       <div className="flex justify-between items-start mb-4">
@@ -528,13 +527,12 @@ export default function JobsPage() {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-4">
                               <Badge
-                                className={`${
-                                  job.type === "Remote"
+                                className={`${job.type === "Remote"
                                     ? "bg-green-500/20 text-green-300 border-green-500/30"
                                     : job.type === "Full-time"
                                       ? "bg-blue-500/20 text-blue-300 border-blue-500/30"
                                       : "bg-purple-500/20 text-purple-300 border-purple-500/30"
-                                }`}
+                                  }`}
                               >
                                 {job.type}
                               </Badge>
@@ -558,9 +556,8 @@ export default function JobsPage() {
                           }}
                           variant="ghost"
                           size="sm"
-                          className={`ml-4 ${
-                            job.isBookmarked ? "text-red-400 hover:text-red-300" : "text-white/60 hover:text-white"
-                          }`}
+                          className={`ml-4 ${job.isBookmarked ? "text-red-400 hover:text-red-300" : "text-white/60 hover:text-white"
+                            }`}
                         >
                           <Heart className={`w-5 h-5 ${job.isBookmarked ? "fill-current" : ""}`} />
                         </Button>
@@ -583,7 +580,7 @@ export default function JobsPage() {
           </div>
 
           {/* Job Detail */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}

@@ -133,11 +133,10 @@ export default function CVAnalysisPage() {
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <motion.div whileHover={{ y: -5 }}>
                   <Card
-                    className={`cursor-pointer transition-all duration-300 ${
-                      analysisMethod === "upload"
-                        ? "bg-blue-500/20 border-blue-500/50"
-                        : "bg-white/10 border-white/20 hover:bg-white/15"
-                    } backdrop-blur-lg`}
+                    className={`cursor-pointer transition-all duration-300 ${analysisMethod === "upload"
+                      ? "bg-blue-500/20 border-blue-500/50"
+                      : "bg-white/10 border-white/20 hover:bg-white/15"
+                      } backdrop-blur-lg`}
                     onClick={() => setAnalysisMethod("upload")}
                   >
                     <CardContent className="p-6 text-center">
@@ -150,11 +149,10 @@ export default function CVAnalysisPage() {
 
                 <motion.div whileHover={{ y: -5 }}>
                   <Card
-                    className={`cursor-pointer transition-all duration-300 ${
-                      analysisMethod === "existing"
-                        ? "bg-blue-500/20 border-blue-500/50"
-                        : "bg-white/10 border-white/20 hover:bg-white/15"
-                    } backdrop-blur-lg`}
+                    className={`cursor-pointer transition-all duration-300 ${analysisMethod === "existing"
+                      ? "bg-blue-500/20 border-blue-500/50"
+                      : "bg-white/10 border-white/20 hover:bg-white/15"
+                      } backdrop-blur-lg`}
                     onClick={() => setAnalysisMethod("existing")}
                   >
                     <CardContent className="p-6 text-center">
@@ -167,11 +165,10 @@ export default function CVAnalysisPage() {
 
                 <motion.div whileHover={{ y: -5 }}>
                   <Card
-                    className={`cursor-pointer transition-all duration-300 ${
-                      analysisMethod === "paste"
-                        ? "bg-blue-500/20 border-blue-500/50"
-                        : "bg-white/10 border-white/20 hover:bg-white/15"
-                    } backdrop-blur-lg`}
+                    className={`cursor-pointer transition-all duration-300 ${analysisMethod === "paste"
+                      ? "bg-blue-500/20 border-blue-500/50"
+                      : "bg-white/10 border-white/20 hover:bg-white/15"
+                      } backdrop-blur-lg`}
                     onClick={() => setAnalysisMethod("paste")}
                   >
                     <CardContent className="p-6 text-center">
@@ -196,13 +193,48 @@ export default function CVAnalysisPage() {
                 </CardHeader>
                 <CardContent>
                   {analysisMethod === "upload" && (
-                    <div className="border-2 border-dashed border-white/30 rounded-lg p-8 text-center">
+                    <div
+                      className="border-2 border-dashed border-white/30 rounded-lg p-8 text-center hover:border-white/50 transition-colors cursor-pointer"
+                      onDrop={(e) => {
+                        e.preventDefault()
+                        // Handle file drop
+                        console.log("File dropped:", e.dataTransfer.files)
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                      onClick={() => {
+                        // Trigger file input
+                        const input = document.createElement('input')
+                        input.type = 'file'
+                        input.accept = '.pdf,.doc,.docx'
+                        input.onchange = (e) => {
+                          const file = (e.target as HTMLInputElement).files?.[0]
+                          if (file) {
+                            console.log("File selected:", file)
+                            // In real app, would upload and analyze
+                            handleAnalyze()
+                          }
+                        }
+                        input.click()
+                      }}
+                    >
                       <Upload className="w-16 h-16 text-white/50 mx-auto mb-4" />
                       <p className="text-white mb-4">Kéo thả file hoặc click để chọn</p>
                       <Button className="bg-gradient-to-r from-blue-500 to-teal-600 hover:from-blue-600 hover:to-teal-700">
-                        Chọn file
+                        Chọn file CV
                       </Button>
                       <p className="text-white/60 text-sm mt-2">Hỗ trợ: PDF, DOC, DOCX (tối đa 5MB)</p>
+                      <div className="mt-4 text-xs text-white/50">
+                        📁 Hoặc thử với CV mẫu:
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleAnalyze()
+                          }}
+                          className="text-blue-400 hover:text-blue-300 ml-1 underline"
+                        >
+                          CV Frontend Developer
+                        </button>
+                      </div>
                     </div>
                   )}
 

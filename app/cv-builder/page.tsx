@@ -234,7 +234,7 @@ export default function CVBuilderPage() {
               <Link href="/cv-builder/templates">
                 <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 bg-transparent">
                   <FileText className="w-4 h-4 mr-2" />
-                  Chọn mẫu CV
+                  Mẫu CV chuyên nghiệp
                 </Button>
               </Link>
               <Button
@@ -273,11 +273,10 @@ export default function CVBuilderPage() {
                   key={section.id}
                   variant={activeSection === section.id ? "default" : "outline"}
                   onClick={() => setActiveSection(section.id)}
-                  className={`${
-                    activeSection === section.id
+                  className={`${activeSection === section.id
                       ? "bg-gradient-to-r from-blue-500 to-teal-600"
                       : "border-white/30 text-white hover:bg-white/10 bg-transparent"
-                  }`}
+                    }`}
                 >
                   <section.icon className="w-4 h-4 mr-2" />
                   {section.label}
