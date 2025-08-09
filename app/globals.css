@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar với tone xanh */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #0ea5e9, #06b6d4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0284c7, #0891b2);
+}
+
+/* Smooth animations */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Blue gradient utilities */
+.gradient-blue {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+}
+
+.gradient-blue-dark {
+  background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
+}
+
+/* Fix button interactions */
+button,
+.cursor-pointer,
+a[role="button"] {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+button:hover,
+.cursor-pointer:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Fix z-index issues */
+.fixed {
+  z-index: 50;
+}
+
+/* Ensure clickable elements are properly layered */
+a,
+button,
+[role="button"] {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navigation specific fixes */
+nav button,
+nav a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure buttons in backdrop-blur containers work */
+.backdrop-blur-lg button,
+.backdrop-blur-lg a {
+  pointer-events: auto !important;
+}
